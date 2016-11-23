@@ -72,7 +72,7 @@ public class TestRunner {
 		boolean allTestsPassed = true;
 		boolean testPassed = false;
 		PropertiesConfiguration configuration = getConfig();
-		setupIntegrationTestDirPath(configuration);
+		setupIntegrationTestDirPath(configuration, draftName);
 		setupIntegrationCommandPrefix(configuration);
 		setupBuildFilePath(configuration);
 		
@@ -200,8 +200,8 @@ public class TestRunner {
 		cmdPrefix = getStringFromConfig(configuration, "cmdPrefix");
 	}
 
-	private static void setupIntegrationTestDirPath(PropertiesConfiguration configuration) {
-		testDirPath = getStringFromConfig(configuration, "testDirPath");
+	private static void setupIntegrationTestDirPath(PropertiesConfiguration configuration, String draftName) {
+		testDirPath = getStringFromConfig(configuration, "testDirPath_" + draftName);
 	}
 
 	private static boolean validateTestCase(Map<String, Map<String, LinkedHashMap>> mapTest,

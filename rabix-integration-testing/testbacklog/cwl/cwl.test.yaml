@@ -1,0 +1,9 @@
+test1:
+  app: testbacklog/cwl/cat1-tool.cwl
+  inputs: testbacklog/cwl/cat-job.json
+  runtime: 60
+  expected:
+    outfile:
+      class: File
+      name: out.txt
+      size: 37
