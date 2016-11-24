@@ -156,7 +156,7 @@ public class TestRunner {
 				System.exit(-1);
 			}
 		}
-		logger.info("Integration tests ended:  " + draftName);
+		logger.info("Integration tests finished:  " + draftName);
 	}
 
 	private static void copyTestbacklog() throws RabixTestException {

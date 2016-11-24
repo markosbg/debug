@@ -1,6 +1,6 @@
 test1:
-  app: testbacklog/draft-1/grep.tool.yaml
-  inputs: testbacklog/draft-1/grep.inputs.yaml
+  app: testbacklog/draft-1/cat1-tool.json
+  inputs: testbacklog/draft-1/cat-job.json
   runtime: 60
   expected:
     outfile:
