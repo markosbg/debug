@@ -63,7 +63,15 @@ public class TestRunner {
 		logger.info(" --- Conformance starter script: " + starterScriptName);
 		
 		command("chmod +x " + starterScriptName , cwlTestWorkingdir);
-		command("echo | python --version", ".");
+		//TODO DEBUG
+		command("echo checkit ./rabix-integration-testing/ ", ".");
+		command("ls -ltra", "./rabix-integration-testing/");
+		
+		command("echo checkit ./rabix-integration-testing/common-workflow-language/draft-2/ ", ".");
+		command("ls -ltra", "./rabix-integration-testing/common-workflow-language/draft-2/");
+		
+		//TODO END DEBUG
+		
 		executeConformanceSuite("./" + starterScriptName, cwlTestWorkingdir);
 		logger.info("Conformance test ended: " + draftName);
 		
