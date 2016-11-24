@@ -27,17 +27,19 @@ public class TestRunner {
 	private static String cmdPrefix;
 	private static String buildFile;
 	private static String currentTestSuite;
-	private static String resultPath = "./rabix-backend-local/target/result.yaml";
+	private static String integrationTempResultPath = "./rabix-backend-local/target/result.yaml";
 	private static String workingdir = "./rabix-backend-local/target/";
 	private static String cwlTestWorkingdir;
+	private static String draftName;
 	private static final Logger logger = LoggerFactory.getLogger(TestRunner.class);
 
 	public static void main(String[] commandLineArguments) {
 		try {
-			startIntegrationTests(commandLineArguments[0]);
+			draftName = commandLineArguments[0];
+			startIntegrationTests(draftName);
 			
-			if (!commandLineArguments[0].equals("draft-sb")) {
-				startConformanceTests(commandLineArguments[0]);
+			if (!draftName.equals("draft-sb")) {
+				startConformanceTests(draftName);
 			}
 
 		} catch (RabixTestException e) {
@@ -61,8 +63,7 @@ public class TestRunner {
 		logger.info(" --- Conformance starter script: " + starterScriptName);
 		
 		command("chmod +x " + starterScriptName , cwlTestWorkingdir);
-		command("pwd", ".");
-		command("./" + starterScriptName, cwlTestWorkingdir);
+		executeConformanceSuite("./" + starterScriptName, cwlTestWorkingdir);
 		logger.info("Conformance test ended: " + draftName);
 		
 	}
@@ -118,9 +119,9 @@ public class TestRunner {
 					logger.info("->Running cmd: " + cmd);
 					command(cmd, workingdir);
 
-					File resultFile = new File(resultPath);
+					File integrationTempResultFile = new File(integrationTempResultPath);
 
-					String resultText = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
+					String resultText = readFile(integrationTempResultFile.getAbsolutePath(), Charset.defaultCharset());
 					Map<String, Object> resultData = JSONHelper.readMap(JSONHelper.transformToJSON(resultText));
 					logger.info("\nGenerated result file:");
 					logger.info(resultText);
@@ -251,18 +252,45 @@ public class TestRunner {
 			Process process = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
 					.directory(new File(directory)).start();
 
-//			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//			String line = null;
-//			while ((line = br.readLine()) != null)
-//				logger.info(line);
+			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = null;
+			while ((line = br.readLine()) != null)
+				logger.info(line);
 
 			int exitCode = process.waitFor();
 
 			if (0 != exitCode) {
-				File resultFile = new File(resultPath);
+				File resultFile = new File(integrationTempResultPath);
 				String stdErr = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
 				logger.info("ovde!!");
 				logger.error(stdErr);
+				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
+			}
+
+		} catch (Exception e) {
+			logger.error("Error while executing command. ", e);
+			throw new RabixTestException("Error while executing command: " + e.getMessage());
+		}
+	}
+	
+	public static void executeConformanceSuite(final String cmdline, final String directory) throws RabixTestException {
+		try {
+			Process process = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
+					.directory(new File(directory)).start();
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = null;
+			while ((line = br.readLine()) != null)
+				logger.info(line);
+
+			int exitCode = process.waitFor();
+
+			if (0 != exitCode) {
+//				File resultFile = new File(integrationTempResultPath);
+//				String stdErr = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
+				InputStream stdErr = process.getErrorStream();
+				logger.info("ovde!!");
+				logger.error(stdErr.toString());
 				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
 			}
 
