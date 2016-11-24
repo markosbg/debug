@@ -1,28 +1,19 @@
-#!/usr/bin/env cwl-runner
-{
-    "class": "CommandLineTool",
-    "description": "Print the contents of a file to stdout using 'cat' running in a docker container.",
-    "hints": [
-        {
-          "class": "DockerRequirement",
-          "dockerPull": "debian:wheezy"
-        }
-    ],
-    "inputs": [
-        {
-            "id": "#file1",
-            "type": "File",
-            "inputBinding": {"position": 1}
-        },
-        {
-            "id": "#numbering",
-            "type": ["null", "boolean"],
-            "inputBinding": {
-                "position": 0,
-                "prefix": "-n"
-            }
-        }
-    ],
-    "outputs": [],
-    "baseCommand": "cat"
-}
+class: CommandLineTool
+description: "Grep desired string from desired file"
+inputs:
+  - id: "#stringPattern"
+    type: string
+    inputBinding:
+      position: 1
+  - id: "#fileToGrep"
+    type: File
+    inputBinding:
+      position: 2 
+outputs:
+  - id: "#output"
+    type: File
+    outputBinding:
+      glob: out.txt
+baseCommand: rev
+successCodes: [0,1]
+stdout: out.txt

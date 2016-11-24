@@ -1,5 +1,5 @@
 test1:
-  app: testbacklog/draft-2/cat1-tool.cwl
+  app: testbacklog/draft-2/grep.cwl.yaml
   inputs: testbacklog/draft-2/cat-job.json
   runtime: 60
   expected:
