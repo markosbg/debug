@@ -6,4 +6,4 @@ test1:
     outfile:
       class: File
       name: out.txt
-      size: 37
+      size: 4

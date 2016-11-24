@@ -14,6 +14,6 @@ outputs:
     type: File
     outputBinding:
       glob: out.txt
-baseCommand: rev
+baseCommand: grep
 successCodes: [0,1]
 stdout: out.txt
