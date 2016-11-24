@@ -209,7 +209,7 @@ public class TestRunner {
 		String resultFileName;
 		int resultFileSize;
 		String resultFileClass;
-		Map<String, Object> resultValues = ((Map<String, Object>) resultData.get("outfile"));
+		Map<String, Object> resultValues = ((Map<String, Object>) resultData.get("output"));
 		resultFileName = resultValues.get("path").toString();
 		resultFileName = resultFileName.split("/")[resultFileName.split("/").length - 1];
 		resultFileSize = (int) resultValues.get("size");
