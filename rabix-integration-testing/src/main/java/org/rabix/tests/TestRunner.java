@@ -63,6 +63,7 @@ public class TestRunner {
 		logger.info(" --- Conformance starter script: " + starterScriptName);
 		
 		command("chmod +x " + starterScriptName , cwlTestWorkingdir);
+		command("echo | python --version", ".");
 		executeConformanceSuite("./" + starterScriptName, cwlTestWorkingdir);
 		logger.info("Conformance test ended: " + draftName);
 		
@@ -245,8 +246,6 @@ public class TestRunner {
 		return false;
 	}
 
-	//TODO separate command for integration and conformance tests.. 
-	
 	public static void command(final String cmdline, final String directory) throws RabixTestException {
 		try {
 			Process process = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
