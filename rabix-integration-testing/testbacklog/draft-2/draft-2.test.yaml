@@ -1,6 +1,6 @@
 test1:
   app: testbacklog/draft-2/grep.cwl.yaml
-  inputs: testbacklog/draft-2/cat-job.json
+  inputs: testbacklog/draft-2/grep.inputs.yaml
   runtime: 60
   expected:
     outfile:
