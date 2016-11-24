@@ -244,6 +244,8 @@ public class TestRunner {
 		return false;
 	}
 
+	//TODO separate command for integration and conformance tests.. 
+	
 	public static void command(final String cmdline, final String directory) throws RabixTestException {
 		try {
 			Process process = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
@@ -259,6 +261,7 @@ public class TestRunner {
 			if (0 != exitCode) {
 				File resultFile = new File(resultPath);
 				String stdErr = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
+				logger.info("ovde!!");
 				logger.error(stdErr);
 				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
 			}
