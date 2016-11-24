@@ -1,6 +1,6 @@
 test1:
-  app: testbacklog/cwl/cat1-tool.cwl
-  inputs: testbacklog/cwl/cat-job.json
+  app: testbacklog/cwl/1st-tool.cwl
+  inputs: testbacklog/cwl/echo-job.yml
   runtime: 60
   expected:
     outfile:
