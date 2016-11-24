@@ -251,10 +251,10 @@ public class TestRunner {
 			Process process = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
 					.directory(new File(directory)).start();
 
-			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			String line = null;
-			while ((line = br.readLine()) != null)
-				logger.info(line);
+//			BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//			String line = null;
+//			while ((line = br.readLine()) != null)
+//				logger.info(line);
 
 			int exitCode = process.waitFor();
 
