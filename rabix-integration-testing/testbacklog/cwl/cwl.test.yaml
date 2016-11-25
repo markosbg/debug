@@ -1,6 +1,6 @@
 test1:
-  app: testbacklog/cwl/1st-tool.cwl
-  inputs: testbacklog/cwl/echo-job.yml
+  app: testbacklog/cwl/grep.tool.yaml
+  inputs: testbacklog/cwl/grep.inputs.yaml
   runtime: 60
   expected:
     outfile:
