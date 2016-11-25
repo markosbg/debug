@@ -69,6 +69,7 @@ public class TestRunner {
 		
 		command("echo checkit ./rabix-integration-testing/common-workflow-language/draft-2/ ", ".");
 		command("ls -ltra", "./rabix-integration-testing/common-workflow-language/draft-2/");
+		command("export PATH=$PATH:`pwd`", "/home/travis/build/markosbg/debug/rabix-backend-local/target/");
 		
 		//TODO END DEBUG
 		
