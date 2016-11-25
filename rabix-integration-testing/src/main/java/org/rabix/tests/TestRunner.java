@@ -72,7 +72,7 @@ public class TestRunner {
 		
 		
 		//TODO END DEBUG
-		executeConformanceSuite("export PATH=$PATH:`pwd`", "/home/travis/build/markosbg/debug/rabix-backend-local/target/");
+		//executeConformanceSuite("export PATH=$PATH:`pwd`", "/home/travis/build/markosbg/debug/rabix-backend-local/target/");
 		executeConformanceSuite("./" + starterScriptName, cwlTestWorkingdir);
 		logger.info("Conformance test ended: " + draftName);
 		

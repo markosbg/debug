@@ -8,4 +8,4 @@ echo "deb2.nesto_rabix"
 ls -l /home/travis/build/markosbg/debug/rabix-backend-local/target/
 echo "deb3.ls nad trenutnim pathom"
 ls -l
-cwltest --test conformance_test_draft-2.yaml --tool rabix -j 4
+cwltest --test conformance_test_draft-2.yaml --tool /home/travis/build/markosbg/debug/rabix-backend-local/target/rabix -j 4
