@@ -58,20 +58,12 @@ public class TestRunner {
 		
 		command(commandCopyCwlStarter, cwlTestWorkingdir);
 		
-		logger.info(" --- Running conformance tests: " + draftName);
+		logger.info(" --- Runnig tests over build: " + draftName);
 		logger.info(" --- Conformance working dir: " + cwlTestWorkingdir);
 		logger.info(" --- Conformance starter script: " + starterScriptName);
 		
 		command("chmod +x " + starterScriptName , cwlTestWorkingdir);
-		//TODO DEBUG
-		command("echo checkit ./rabix-integration-testing/ ", ".");
-		command("ls -ltra", "./rabix-integration-testing/");
 		
-		command("echo checkit ./rabix-integration-testing/common-workflow-language/draft-2/ ", ".");
-		command("ls -ltra", "./rabix-integration-testing/common-workflow-language/draft-2/");
-		
-		
-		//TODO END DEBUG
 		//executeConformanceSuite("export PATH=$PATH:`pwd`", "/home/travis/build/markosbg/debug/rabix-backend-local/target/");
 		executeConformanceSuite("./" + starterScriptName, cwlTestWorkingdir);
 		logger.info("Conformance test ended: " + draftName);
@@ -270,7 +262,6 @@ public class TestRunner {
 			if (0 != exitCode) {
 				File resultFile = new File(integrationTempResultPath);
 				String stdErr = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
-				logger.info("ovde!!");
 				logger.error(stdErr);
 				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
 			}
@@ -294,10 +285,6 @@ public class TestRunner {
 			int exitCode = process.waitFor();
 
 			if (0 != exitCode) {
-//				File resultConfFile = new File("/home/travis/build/markosbg/debug/rabix-integration-testing/common-workflow-language/draft-2/resultConf.txt");
-//				String stdErr = readFile(resultConfFile.getAbsolutePath(), Charset.defaultCharset());
-//				logger.info("ovdeconf!");
-//				logger.error(stdErr);
 				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
 			}
 

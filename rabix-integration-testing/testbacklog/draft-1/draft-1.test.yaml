@@ -1,9 +1,0 @@
-test1:
-  app: testbacklog/draft-1/cat1-tool.json
-  inputs: testbacklog/draft-1/cat-job.json
-  runtime: 60
-  expected:
-    outfile:
-      class: File
-      name: out.txt
-      size: 37
