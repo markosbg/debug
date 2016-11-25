@@ -293,11 +293,10 @@ public class TestRunner {
 			int exitCode = process.waitFor();
 
 			if (0 != exitCode) {
-//				File resultFile = new File(integrationTempResultPath);
-//				String stdErr = readFile(resultFile.getAbsolutePath(), Charset.defaultCharset());
-				InputStream stdErr = process.getErrorStream();
-				logger.info("ovde!!");
-				logger.error(stdErr.toString());
+				File resultConfFile = new File("/home/travis/build/markosbg/debug/rabix-integration-testing/common-workflow-language/draft-2/resultConf.txt");
+				String stdErr = readFile(resultConfFile.getAbsolutePath(), Charset.defaultCharset());
+				logger.info("ovdeconf!");
+				logger.error(stdErr);
 				throw new RabixTestException("Error while executing command: Non zero exit code " + exitCode);
 			}
 
