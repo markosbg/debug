@@ -1,0 +1,15 @@
+class: CommandLineTool
+label: inherittool
+baseCommand: ["touch", "out.txt"]
+inputs: 
+  - id: "#inputfile"
+    type: File
+outputs:
+  - id: "#output"
+    type: File
+    outputBinding:
+      sbg:metadata:
+        key1: value1
+        key2: value2
+      sbg:inheritMetadataFrom: "#inputfile"
+      glob: out.txt
