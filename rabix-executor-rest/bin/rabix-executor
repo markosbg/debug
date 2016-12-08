@@ -1,9 +1,0 @@
-#!/bin/sh
-
-command="java -jar ./lib/rabix-executor-rest.jar --configuration-dir ./config"
-for i in "$@"
-do
-    command="$command $i"
-done
-
-eval $command
