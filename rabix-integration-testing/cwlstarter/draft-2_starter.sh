@@ -4,4 +4,6 @@ source env/testenv/bin/activate
 pip install -e git+https://github.com/common-workflow-language/cwltest.git@master#egg=cwltest
 echo komanda
 echo cwltest --test conformance_test_draft-2.yaml --tool ${buildFileDirPath}rabix -j 4
-cwltest --test conformance_test_draft-2.yaml --tool ${buildFileDirPath}rabix -j 4
+cwltest --test conformance_test_draft-2.yaml --tool ${buildFileDirPath}rabix -j 4 > test.txt
+echo macka
+cat test.txt
