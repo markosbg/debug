@@ -1,5 +1,6 @@
 class: CommandLineTool
-stdout: "echo.txt"
+cwlVersion: "sbg:draft-2"
+stdout: "out.txt"
 baseCommand: echo
 inputs:
   - id: "#echostring"
@@ -12,4 +13,4 @@ outputs:
   - id: "#output"
     type: File
     outputBinding:
-      glob: "echo.txt"
+      glob: "out.txt"

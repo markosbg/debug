@@ -1,5 +1,5 @@
-cwlVersion: cwl:draft-3
 class: CommandLineTool
+cwlVersion: cwl:draft-3
 description: "Grep desired string from desired file"
 inputs:
   - id: stringPattern
@@ -9,7 +9,7 @@ inputs:
   - id: fileToGrep
     type: File
     inputBinding:
-      position: 2 
+      position: 2
 outputs:
   - id: output
     type: File

@@ -9,7 +9,7 @@ inputs:
   fileToGrep:
     type: File
     inputBinding:
-      position: 2 
+      position: 2
 outputs:
   output:
     type: File
