@@ -5,11 +5,17 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.ProcessBuilder.Redirect;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.io.FileUtils;
@@ -176,6 +182,7 @@ public class TestRunner {
 
   private static void extractBuildFile() throws RabixTestException {
     File buildFileDir = new File(buildFileDirPath);
+    buildFileDirPath = buildFileDir.getAbsolutePath();
     File[] directoryListing = buildFileDir.listFiles();
 
     if (directoryListing != null) {
@@ -208,6 +215,11 @@ public class TestRunner {
     command("ln -s " + workingdir + "/rabix .", buildFileDirPath);
 
     logger.info("Extracting build file: ended");
+  
+  }
+
+  private static void setupBuildFilePath(PropertiesConfiguration configuration) {
+    buildFilePath = getStringFromConfig(configuration, "buildFile");
   }
 
   private static void setupIntegrationCommandPrefix(PropertiesConfiguration configuration) {
@@ -338,7 +350,7 @@ public class TestRunner {
     try {
       File errorLog = new File(directory + "errorConf.log");
       ProcessBuilder processBuilder = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
-          .directory(new File(directory)).redirectError(errorLog);
+          .directory(new File(directory)).redirectError(errorLog).redirectOutput(Redirect.PIPE);
 
       Map<String, String> env = processBuilder.environment();
       env.put("LC_ALL", "C");
