@@ -364,7 +364,7 @@ public class TestRunner {
 
       String line = null;
       while ((line = br.readLine()) != null)
-        logger.info(line);
+        logger.info(line+"\n");
 
       int exitCode = process.waitFor();
 
