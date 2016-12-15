@@ -19,6 +19,7 @@ before_install:
   - git status
   - cd ..
   - cd ..
+  - touch /home/travis/build/markosbg/debug/rabix-integration-testing/common-workflow-language/draft-2/errorConf.log
 
 script:
   - mvn clean install package -P all
