@@ -348,6 +348,7 @@ public class TestRunner {
 
   public static void executeConformanceSuite(final String cmdline, final String directory) throws RabixTestException {
     try {
+      logger.info("This is cwl work dir: " + directory);	
       File errorLog = new File(directory + "errorConf.log");
       ProcessBuilder processBuilder = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
           .directory(new File(directory)).redirectOutput(Redirect.PIPE);
