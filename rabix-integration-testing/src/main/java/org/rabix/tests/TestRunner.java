@@ -350,7 +350,7 @@ public class TestRunner {
     try {
       File errorLog = new File(directory + "errorConf.log");
       ProcessBuilder processBuilder = new ProcessBuilder(new String[] { "bash", "-c", cmdline }).inheritIO()
-          .directory(new File(directory)).redirectError(errorLog).redirectOutput(Redirect.PIPE);
+          .directory(new File(directory)).redirectOutput(Redirect.PIPE);
 
       Map<String, String> env = processBuilder.environment();
       env.put("LC_ALL", "C");
